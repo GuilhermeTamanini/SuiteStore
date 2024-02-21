@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li class="nav-link"><h1>Suite Store</h1></li>
+                <li class="nav-link"><a href="home.html">Home</a></li>
+                <li class="nav-link"><a href="products.html">Products</a></li>
+                <li class="nav-link"><a href="categories.html">Categories</a></li>
+                <li class="nav-link"><a href="history.html">History</a></li>
+            </ul>
+        </nav>
+    </header>
+<div class="container">
+    <div class="left-container">
+        <main>
+            <div>
+                <input class="input" type="text" placeholder="Product">
+            </div>
+            <div class="sub-inputs">
+                <input class="sub-input" type="number" placeholder="Amount">
+                <input class="sub-input" type="number" placeholder="Tax">
+                <input class="sub-input" type="number" placeholder="Price">
+            <div>
+                <button class="add-btn">Add Product</button>
+            </div>
+            </div>
+        </main>
+    </div>
+    <div class="right-container">
+        <div class="table-container">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th id="first-collun">Product</th>
+                        <th id="other-collun">Price</th>
+                        <th id="other-collun">Amount</th>
+                        <th id="other-collun">Total</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td id="first-collun">Rice</td>
+                        <td id="other-collun">$2.00</td>
+                        <td id="other-collun">2</td>
+                        <td id="other-collun">$4.00</td>
+                    </tr>
+                    <tr>
+                        <td id="first-collun">Corn</td>
+                        <td id="other-collun">$6.00</td>
+                        <td id="other-collun">3</td>
+                        <td id="other-collun">$18.00</td>
+                    </tr>
+                    <tr>
+                        <td id="first-collun">Potato</td>
+                        <td id="other-collun">$0.50</td>
+                        <td id="other-collun">21</td>
+                        <td id="other-collun">$10.50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="others">
+            <div>
+                <p>Total: $6.50</p>
+            </div>
+            <div>
+                <p>Tax: $32.50</p>
+            </div>
+            <div>
+                <button class="table-cancel-btn">Cancel</button>
+                <button class="table-finish-btn">Finish</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

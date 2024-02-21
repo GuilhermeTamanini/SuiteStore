@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css">
+    <title>Categories</title>
+</head>
+<style>
+#first-collun {
+    width: 40%;
+}
+.del-btn {
+    width: 100%;
+}
+</style>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li class="nav-link"><h1>Categories</h1></li>
+                <li class="nav-link"><a href="home.html">Home</a></li>
+                <li class="nav-link"><a href="products.html">Products</a></li>
+                <li class="nav-link"><a href="categories.html">Categories</a></li>
+                <li class="nav-link"><a href="history.html">History</a></li>
+            </ul>
+        </nav>
+    </header>
+<div class="container">
+    <div class="left-container">
+        <main>
+            <div>
+                <input class="input" type="text" id="category-input" name="data" placeholder="Category" required>
+            </div>
+            <div>
+                <input class="input" type="number" id="tax-input" name="data2" placeholder="Tax" required>
+            </div>
+            <div>
+                <button class="add-btn" onclick="Save()" type="button">Add category</button>
+            </div>
+        </main>
+    </div>
+    <div class="right-container">
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th id="first-collun">Code</th>
+                    <th id="other-collun">Category</th>
+                    <th id="other-collun">Tax</th>
+                    <th id="other-collun">Options</th>
+                </tr>
+            </thead>
+            <tbody class="tbody" id="tbody">
+                <tr class="render-row">
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function Save() {
+        var categories = JSON.parse(localStorage.getItem("categories")) || [];
+        var name = document.getElementById('category-input').value;
+        var tax = document.getElementById('tax-input').value;
+        var id = 0;
+        
+        for ( let i = 0; i < categories.length; i++) {
+            if (categories[i].id >= id) {
+                id = categories[i].id +1
+            }
+        }
+        const category = {id, name, tax};
+        
+        if(name === "" || tax === "") {
+            alert("Preencha todos os campos!")
+            return;
+        }
+
+        categories.push(category)
+        localStorage.setItem("categories", JSON.stringify(categories))
+
+        renderItem(category);
+    }
+
+    function renderItem(category) {
+        let tbody = document.querySelector(".tbody");
+        let trow = document.createElement("tr");
+        trow.innerHTML =
+         `  
+            <td id="other-collun">${category.id}</td>
+            <td id="other-collun">${category.name}</td>
+            <td id ="other-collun">${category.tax}</td>
+            <td id="other-collun" ><button class="del-btn" onclick="removeItem()">Delete</button></td>
+        `;
+        tbody.append(trow)
+    }
+    function getCategories() {
+        const categories = JSON.parse(localStorage.getItem('categories'));
+        categories.forEach(item => renderItem(item));
+        console.log(categories)
+    }  
+    function removeItem() {
+        let trow = this.event.target.parentElement.parentElement
+        let id = trow.children[0].innerText
+        let name = trow.children[1].innerText
+        var categories = JSON.parse(localStorage.getItem('categories'))
+        let newCategories = categories.filter(category => category.id !== id && category.name !== name);
+        localStorage.setItem("categories", JSON.stringify(newCategories))
+        trow.remove()
+    }
+
+    getCategories()
+</script>
+</body>
+</html>
